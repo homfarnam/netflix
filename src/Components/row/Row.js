@@ -42,7 +42,6 @@ function Row({ title, fetchUrl, isLargeRow }) {
           })
           .catch(error =>console.log(error) )
       }
-
   }
 
   return (
@@ -53,7 +52,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
         {movies.map((movie) => (
           <img
             key={movie.id}
-            onClick={()=>{handleClick(movie)}}
+            onClick={handleClick.bind(null, movie)}
             className={`row__poster ${isLargeRow && "row__posterLarge"} `}
             src={`${baseUrl}${
               isLargeRow ? movie.poster_path : movie.backdrop_path

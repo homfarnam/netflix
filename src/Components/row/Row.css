@@ -13,3 +13,21 @@
 .row__posters::-webkit-scrollbar {
     display: none;
 }
+
+.row__poster {
+    width: 100%;
+    object-fit: contain;
+    max-height: 100px;
+    transition: transform 450ms;
+    margin-right: 10px;
+}
+
+.row__poster:hover {
+    transform: scale(1.09);
+    opacity: 1;
+}
+
+.row__posterLarge {
+    max-height: 250px;
+    opacity: 1;
+}

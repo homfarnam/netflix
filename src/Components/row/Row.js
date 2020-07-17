@@ -3,7 +3,6 @@ import axios from "../../axios";
 import "./Row.css";
 import YouTube from "react-youtube";
 import movieTrailer from 'movie-trailer'
-import Poster from '../poster/Poster'
 
 const baseUrl = "https://image.tmdb.org/t/p/original/";
 
@@ -31,11 +30,11 @@ function Row({ title, fetchUrl, isLargeRow }) {
     }
   }
 
-  const handleClick = (movieName = '') =>{
+  const handleClick = (movie) =>{
       if(trailerUrl){
         setTrailerUrl('')
       } else{
-        movieTrailer(movieName) 
+        movieTrailer(movie?.name || '') 
           .then(url=>{
             // https://www.youtube.com/watch?v=1_IYL9ZMR_Y
               const urlParams = new URLSearchParams(new URL(url).search)
@@ -43,6 +42,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
           })
           .catch(error =>console.log(error) )
       }
+
   }
 
   return (
@@ -51,20 +51,14 @@ function Row({ title, fetchUrl, isLargeRow }) {
 
       <div className={"row__posters"}>
         {movies.map((movie) => (
-          <Poster
+          <img
             key={movie.id}
-<<<<<<< HEAD
             onClick={()=> handleClick(movie)}
             className={`row__poster ${isLargeRow && "row__posterLarge"} `}
             src={`${baseUrl}${
-=======
-            name={movie.name}
-            large={isLargeRow}
-            onClick={handleClick}
-            image={`${baseUrl}${
->>>>>>> c09355d83475b1afc25dd6d3d87b4b3fdb4c9b9d
               isLargeRow ? movie.poster_path : movie.backdrop_path
             }`}
+            alt={movie.name}
           />
         ))}
       </div>
